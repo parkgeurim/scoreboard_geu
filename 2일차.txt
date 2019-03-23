@@ -1,0 +1,37 @@
+npm install 은 pakage.json
+
+
+
+lodash ^ ? 앞에 숫자가 바뀌지 않은 범위에서 최신 버전을 가져옴
+lodash - ? 두번째 숫자까지 유지하고 최신버전을 가져옴
+
+-- save ? pakage.json에 기록하라는 뜻 ?
+
+
+npm install webpack webpack-cli --save-dev
+설치하면
+pakage.json파일에
+"devDependencies": {
+    "webpack-cli": "^3.3.0"
+  }
+
+가 생김
+
+개발에 필요한 "devDependencies" 와
+소스에 필요한 dependencies 를 분리하여 관리함
+
+
+https://www.npmjs.com/
+
+
+webpack-dev-server ? 
+
+
+url 
+https://github.com/eastflag/scoreboard.git
+Directory: c:/ldk/teacher-scoreboard
+
+
+
+
+
