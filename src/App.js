@@ -8,11 +8,11 @@ class App extends React.Component {
 
   state = {
     players: [
-      {name : 'geu', id:1},
-      {name : 'park', id:2},
-      {name : 'kim', id:3},
-      {name : 'Lee', id:4},
-      {name : 'Hong', id:5}
+      {name : 'geu', score:0, id:1},
+      {name : 'park', score:0, id:2},
+      {name : 'kim', score:0, id:3},
+      {name : 'Lee', score:0, id:4},
+      {name : 'Hong', score:0, id:5}
     ]
   };
 
@@ -33,6 +33,7 @@ class App extends React.Component {
           this.state.players.map(player => (
             <Player name={player.name} key={player.id.toString()}
                     id={player.id}
+                    score={player.score}
                     handleRemovePlayer ={this.handleRemovePlayer}/>
           ))
         }
