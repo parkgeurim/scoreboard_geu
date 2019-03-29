@@ -1,59 +1,67 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Header} from './components/Header';
+import {Header} from "./components/Header";
 import {Player} from "./components/Player";
+import {AddPlayerForm} from "./components/AddPlayerForm";
 
-
-class App extends React.Component {
+class App extends Component {
+  max_player_id = 4;
 
   state = {
     players: [
-      {name : 'geu', score:0, id:1},
-      {name : 'park', score:0, id:2},
-      {name : 'kim', score:0, id:3},
-      {name : 'Lee', score:0, id:4},
-      {name : 'Hong', score:0, id:5}
+      {name: "LDK", score: 0, id: 1},
+      {name: "HONG", score: 0, id: 2},
+      {name: "KIM", score: 0, id: 3},
+      {name: "PARK", score: 0, id: 4},
     ]
-  };
+  }
 
   handleRemovePlayer = (id) => {
     // 해당 id를 삭제
-    this.setState(prevState=> {
-      return {
-        players: prevState.players.filter(item=> item.id !==id)
-      }
-    })
+    this.setState(prevState => ({
+      players: prevState.players.filter(item => item.id !== id)
+    }))
   }
 
   handleChangeScore = (id, delta) => {
     console.log(id, delta);
     this.setState(prevState => {
       prevState.players.forEach(item => {
-        if (item.id == id) {
+        if (item.id === id) {
           item.score += delta;
         }
       })
-      return players: [...prevState.players]
+      return {players: [...prevState.players]}
     })
-  };
+  }
 
-  render(){
-    return(
+  handleAddPlayer = (name) => {
+    this.setState(prevState => ({
+      players: [...prevState.players, {name, score: 0, id: ++this.max_player_id}]
+    }))
+  }
+
+  render() {
+    return (
       <div className="scoreboard">
-        <Header title="My scoreboard" totalPlayers={1 + 10} players={this.state.players} />
+        <Header title="My Scoreboard" totalPlayers={10 + 1} players={this.state.players}/>
         {
           this.state.players.map(player => (
             <Player name={player.name} key={player.id.toString()}
                     id={player.id}
                     score={player.score}
-                    handleRemovePlayer ={this.handleRemovePlayer}
+                    handleRemovePlayer={this.handleRemovePlayer}
                     handleChangeScore={this.handleChangeScore}/>
           ))
         }
+        <AddPlayerForm handleAddPlayer={this.handleAddPlayer}/>
       </div>
     );
   }
 }
 
+
+// 1. Header() 펑션 컴포넌트를 호출
+// 2. 속성을 json으로 전달한다. {title: "My Scoreboard", totalPlayers: 11}
 
 export default App;

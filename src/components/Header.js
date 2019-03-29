@@ -1,12 +1,12 @@
 import React from 'react';
-import {Stats} from "./Stats";
+import {Statistics} from "./Statistics";
 
 export const Header = (props) => {
-  const {title, totalPlayers} = props; // destruct assingments
+  const {title} = props; // destruct assignment
   return (
     <header>
-      <Stats players/>
+      <Statistics players={props.players}/>
       <h1>{title}</h1>
     </header>
-  );
+  )
 }
