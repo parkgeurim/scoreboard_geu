@@ -30,7 +30,7 @@ class App extends Component {
         if (item.id === id) {
           item.score += delta;
         }
-      })
+      });
       return {players: [...prevState.players]}
     })
   }
