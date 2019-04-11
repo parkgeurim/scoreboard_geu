@@ -1,26 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import styles from '../pages/scoreboard/Scoreboard.module.css';
+import {changeScore} from "../redux/actions";
+import {connect} from "react-redux";
 
-export class Counter extends React.Component {
-/*  incrementScore = () => {
-    console.log(this);
-    // this.state.score = this.state.score + 1;
-    // 변경을 하기 위해서는 setState를 호출
-    this.setState(prevState => {
-      return {
-        score: prevState.score + 1
-      }
-    });
-  }*/
+class Counter extends React.Component {
+  static propTypes = {
+    id: PropTypes.number,
+    score: PropTypes.number,
+    handleChangeScore: PropTypes.func
+  }
 
   render() {
+    // desctuct assignment
+    const {changeScore, id, score} = this.props;
+
     return (
-      <div className="counter">
-        <button className="counter-action decrement"
-                onClick={() => this.props.handleChangeScore(this.props.id, -1)}> - </button>
-        <span className="counter-score">{this.props.score}</span>
-        <button className="counter-action increment"
-                onClick={() => this.props.handleChangeScore(this.props.id, 1)}> + </button>
+      <div className={styles.counter}>
+        <button className={classNames(styles["counter-action"], styles.decrement)}
+                onClick={() => changeScore(id, -1)}> - </button>
+        <span className={styles["counter-score"]}>{score}</span>
+        <button className={classNames(styles["counter-action"], styles.increment)}
+                onClick={() => changeScore(id, 1)}> + </button>
       </div>
     );
   }
 }
+
+// (액션을 디스패치하는 펑션)을 (Props)로 subscribe해서 가져온다.
+// let mapDispathchToProps = (dispatch) => ({
+//   changeScore: (id, delta) => dispatch(changeScore(id, delta))
+// })
+//
+// export default connect(null, mapDispathchToProps)(Counter)
+
+export default connect(null, {changeScore})(Counter)
